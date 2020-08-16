@@ -1,0 +1,48 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("Imagenes/fondoPodio.jpg");
+    background-size: 100% 100%;
+}
+.centrado{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 182px;
+}
+.tituloPodio{
+    margin-bottom: 360px;
+    margin-left: 20px;
+    font-family: Colorado;
+    font-size: 90pt;
+    color: white;
+}
+.podioImagen{
+    height: 320px;
+    width: 600px;
+    background-image: url("Imagenes/podio.png");
+    background-size: 100% 100%;
+    margin-left: 75px;
+    margin-top: 200px;
+    font-family: Colorado;
+    font-size: 35pt;
+}
+.ganador1{
+    margin-top: 8px;
+    margin-left: 400px;
+}
+.ganador2{
+    margin-left: 200px;
+    margin-top: -20px;
+}
+.ganador3{
+    margin-left: 25px;
+    margin-top: -45px;
+}

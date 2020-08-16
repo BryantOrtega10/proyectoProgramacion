@@ -1,0 +1,65 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("Imagenes/fondoIngresarSala.jpg");
+    background-size: 100% 100%;
+}
+.centrado{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ingresarSalaTitulo{
+    margin-top: -30px;
+    margin-bottom: 1px;
+    font-family: Colorado;
+    font-size: 90pt;
+    color: white;
+    text-align: center;
+}
+table{
+    margin-top: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25pt;
+    color: rgb(75, 68, 68);
+}
+#codigoIngresarSala{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25pt;
+    background-color: rgb(255, 255, 255, .9);
+    border: none;
+    color: rgb(117, 115, 115);
+    width: 200px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    margin-left: 3px;
+}
+.crSl{
+    margin-top: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pregunta{
+    color: rgb(75, 68, 68);
+}
+.respuesta{
+    margin-left: 2px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: Colorado;
+    font-size: 45pt;
+}

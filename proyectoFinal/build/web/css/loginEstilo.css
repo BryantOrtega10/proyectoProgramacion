@@ -1,0 +1,100 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-image: url("Imagenes/fondoLogin.jpg");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+}
+.loginPanel{
+    display: inline-block;
+    margin-top: 160px;
+    width: 450px;
+    height: 250px;
+}
+.loginTitulo{
+    margin-top: 25px;
+    margin-bottom: 1px;
+    font-family: Colorado;
+    font-size: 100pt;
+    color: white;
+    text-align: center;
+}
+.loginSpace{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20pt;
+    color: rgb(250, 238, 174);
+}
+#usuario{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    width: 170px;
+    background-color: rgb(255, 255, 255, .9);
+    border: none;
+    color: rgb(117, 115, 115);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+.espacioContraseña{
+    padding-top: 12px;
+}
+#pass{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    width: 170px;
+    background-color: rgb(255, 255, 255, .9);
+    border: none;
+    color: rgb(117, 115, 115);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+.buttonPanel{
+    display: flex;
+    justify-content: center;
+}
+.loginButton{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    color: rgb(8, 8, 94, .7);
+    background-color: rgb(255, 255, 255, .6);
+    text-align: center;
+    border: none;
+    width: 177px;
+    margin-top: 25px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.olvCtr{
+    margin-top: 10px;
+    height: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 17pt;
+    display: flex;
+    justify-content: center;
+}
+.crCnt{
+    height: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 17pt;
+    display: flex;
+    justify-content: center;
+}
+.pregunta{
+    color: rgb(250, 238, 174);
+}
+.respuesta{
+    margin-top: 23px;
+    margin-left: 2px;
+    color: rgb(75, 9, 9);
+    text-decoration: none;
+}
