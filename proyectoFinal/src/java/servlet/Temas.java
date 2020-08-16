@@ -64,7 +64,6 @@ public class Temas extends HttpServlet {
             String imgDefecto = "";
             filePath = getServletContext().getRealPath("/imgSubidas/");
             try {
-
                 List fileItems = upload.parseRequest(request);
                 Iterator i = fileItems.iterator();
                 while (i.hasNext()) {
@@ -147,6 +146,7 @@ public class Temas extends HttpServlet {
         else{
             if(request.getParameter("accion") != null &&  request.getParameter("accion").equals("formularioTemasMod")){
                 int id = Integer.parseInt(request.getParameter("id"));
+                //Metodo de DBTemas que consulta un tema por id
                 ResultSet res = BdTemas.consultarPorId(id);
                 
                 try {

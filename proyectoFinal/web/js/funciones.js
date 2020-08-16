@@ -55,6 +55,7 @@ function agregarTemaAjax() {
     var fd = new FormData(document.getElementById("formAddTema"));
     
     var xhttp = new XMLHttpRequest();
+    
     xhttp.onload  = function() {
         if (this.status === 200) {
             if(this.responseText==="OK"){

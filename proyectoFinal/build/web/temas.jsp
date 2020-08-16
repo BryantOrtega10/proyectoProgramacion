@@ -22,6 +22,7 @@
         <div class="contMenu">
             <a href="Temas">Temas</a>
             <a href="Usuarios">Usuarios</a>
+            <a href="Cerrar">Cerrar S</a>
         </div>
         <div class="contDerecho">
             <h1>Temas</h1>
@@ -52,7 +53,7 @@
         <div class="fondoPop" id="fondoPop" onclick="clickFondoPop()"></div>
         <div class="contPopup" id="agregarTemaPop">
             <h2>Agregar tema</h2>
-            <form action="Temas" method="post" id="formAddTema" onsubmit="agregarTemaAjax(); return false;">
+            <form action="Temas" method="post" id="formAddTema" onsubmit="agregarTemaAjax(); return false;" enctype="multipart">
                 <input type="hidden" name="accion" value="agregarTema" />
                 <table>
                     <tr>
