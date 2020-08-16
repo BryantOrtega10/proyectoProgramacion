@@ -22,6 +22,7 @@
         <div class="contMenu">
             <a href="Temas">Temas</a>
             <a href="Usuarios">Usuarios</a>
+            <a href="Cerrar">Cerrar S</a>
         </div>
         <div class="contDerecho">
             <h1>Temas</h1>
