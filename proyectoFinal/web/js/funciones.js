@@ -90,8 +90,7 @@ function modificarTemaAjax() {
   xhttp.send(fd);
   
 }
-function formModTemaAjax(elemento){
-    
+function formModTemaAjax(elemento){    
     var xhttp = new XMLHttpRequest();
     xhttp.onload  = function() {
         if (this.status === 200) {
@@ -108,6 +107,87 @@ function elimiarTemaAjax(elemento){
         if (this.status === 200) {
             if(this.responseText==="OK"){
                 alert("Se eliminado el tema correctamente");
+                window.location.reload();
+            }
+            else{
+                alert(this.responseText);
+            }
+        }      
+    };
+    xhttp.open("GET", elemento.href , true);
+    xhttp.send();
+}
+
+function urlencodeFormData(fd){
+    var s = '';
+    function encode(s){ return encodeURIComponent(s).replace(/%20/g,'+'); }
+    for(var pair of fd.entries()){
+        if(typeof pair[1]=='string'){
+            s += (s?'&':'') + encode(pair[0])+'='+encode(pair[1]);
+        }
+    }
+    return s;
+}
+
+function agregarPregAjax() {
+    var fd = new FormData(document.getElementById("formAddPreg"));
+    
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            if(this.responseText==="OK"){
+                alert("Se agregado la pregunta correctamente");
+                window.location.reload();
+            }
+            else{
+                alert(this.responseText);
+            }
+        }      
+    };
+  xhttp.open("POST", "Preguntas", true);
+  xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  xhttp.send(urlencodeFormData(fd));
+  
+}
+function formModPregAjax(elemento){    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            document.getElementById("editarPregPop").innerHTML = this.responseText;
+            mostrarPopup("editarPregPop");
+        }      
+    };
+    xhttp.open("GET", elemento.href , true);
+    xhttp.send();
+}
+function modificarPregAjax() {
+    var fd = new FormData(document.getElementById("formModPreg"));
+    
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            if(this.responseText==="OK"){
+                alert("Se modificado la pregunta correctamente");
+                window.location.reload();
+            }
+            else{
+                alert(this.responseText);
+            }
+        }      
+    };
+  xhttp.open("POST", "Preguntas", true);
+  xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  xhttp.send(urlencodeFormData(fd));
+  
+}
+function elimiarPregAjax(elemento){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            if(this.responseText==="OK"){
+                alert("Se eliminado la pregunta correctamente");
                 window.location.reload();
             }
             else{

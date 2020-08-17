@@ -41,7 +41,7 @@
                         <td><img src="imgSubidas/<%= temas.getString("tem_icono") %>" width="36" /></td>
                         <td class="links">
 
-                            <a href="PreguntasxTema?id=<%= temas.getString("tem_id") %>">Preguntas(<%= temas.getString("num_preguntas") %>)</a>
+                            <a href="Preguntas?fkTema=<%= temas.getString("tem_id") %>">Preguntas(<%= temas.getString("num_preguntas") %>)</a>
                             <a href="Temas?accion=formularioTemasMod&id=<%= temas.getString("tem_id") %>" onclick="formModTemaAjax(this); return false;" class="modificar">Modificar</a>
                             <a href="Temas?accion=eliminarTema&id=<%= temas.getString("tem_id") %>" onclick="elimiarTemaAjax(this); return false;" class="eliminar">Eliminar</a>
 

@@ -11,6 +11,53 @@ package logica;
  */
 public class Opcion {
     private int idOpcion;
-    private String Opcion;
+    private String txtOpcion;
+    private int fkPregunta;
+
+    public Opcion(){
+        this.idOpcion = 0;
+        this.txtOpcion = "";
+        this.fkPregunta = 0;
+    }
+
+    public Opcion(String txtOpcion, int fkPregunta) {
+        this.idOpcion = 0;
+        this.txtOpcion = txtOpcion;
+        this.fkPregunta = fkPregunta;
+    }
+
+    public Opcion(int idOpcion, String txtOpcion, int fkPregunta) {
+        this.idOpcion = idOpcion;
+        this.txtOpcion = txtOpcion;
+        this.fkPregunta = fkPregunta;
+    }
+    
+        
+    public int getIdOpcion() {
+        return idOpcion;
+    }
+
+    public void setIdOpcion(int idOpcion) {
+        this.idOpcion = idOpcion;
+    }
+
+    public String getTxtOpcion() {
+        return txtOpcion;
+    }
+
+    public void setTxtOpcion(String txtOpcion) {
+        this.txtOpcion = txtOpcion;
+    }
+
+    public int getFkPregunta() {
+        return fkPregunta;
+    }
+
+    public void setFkPregunta(int fkPregunta) {
+        this.fkPregunta = fkPregunta;
+    }
+
+   
+
     
 }
