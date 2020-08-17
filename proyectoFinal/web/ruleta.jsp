@@ -7,11 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="ruleta.css">
+</head>
+<body>
+<div>
+  <div id="tema"></div>
+  <div class="vara"></div>
+  <img src="ruleta.png" id="ruleta" />
+</div>
+<script src="ruleta.js"></script>
+</body>
 </html>

@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 16, 2020, 4:22:11 PM
+    Author     : Cami López
+*/
+*{
+
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+
+}
+body{
+  background-image: url("ruleta fondo.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+ background-repeat: no-repeat;
+ background-position: top left;
+}
+
+.vara {
+  height: 70px;
+  width: 15px;
+  background-color: black;
+  margin: auto;
+  position: relative;
+  top: 30px;
+  border-radius: 0px 0px 8px 8px;
+  border: 1px solid #000;
+  border-top: 5px solid #000;
+  z-index: 1000;
+}
+img {
+  z-index: 100;
+  transition: all 5s;
+}
+#tema{
+  position: absolute;
+  font-size: 40px;
+  padding: 20px;
+}
+
