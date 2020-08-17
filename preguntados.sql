@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2020 a las 19:03:39
+-- Tiempo de generación: 17-08-2020 a las 05:15:32
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -36,6 +36,16 @@ CREATE TABLE `opcion` (
   `fk_pregunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `opcion`
+--
+
+INSERT INTO `opcion` (`opc_id`, `opc_opcion`, `fk_pregunta`) VALUES
+(5, 'ñand', 2),
+(6, 'ñp', 2),
+(7, 'ña', 2),
+(8, 'lo', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -45,10 +55,17 @@ CREATE TABLE `opcion` (
 DROP TABLE IF EXISTS `pregunta`;
 CREATE TABLE `pregunta` (
   `pre_id` int(11) NOT NULL,
-  `pre_pregunta` varchar(45) DEFAULT NULL,
+  `pre_pregunta` text DEFAULT NULL,
   `fk_tema` int(11) NOT NULL,
-  `fk_opcion_correcta` int(11) DEFAULT NULL
+  `pre_opcion_correcta` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`pre_id`, `pre_pregunta`, `fk_tema`, `pre_opcion_correcta`) VALUES
+(2, 'Mañanana', 4, 'D');
 
 -- --------------------------------------------------------
 
@@ -88,6 +105,16 @@ CREATE TABLE `tema` (
   `tem_nombre` varchar(45) DEFAULT NULL,
   `tem_icono` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tema`
+--
+
+INSERT INTO `tema` (`tem_id`, `tem_nombre`, `tem_icono`) VALUES
+(1, 'Prueba 14', 'menu.png'),
+(3, 'Prueba 2', 'lupa.png'),
+(4, 'Agosto', 'personaDefecto.png'),
+(5, 'Prueba 28', 'menu.png');
 
 -- --------------------------------------------------------
 
@@ -130,8 +157,7 @@ ALTER TABLE `opcion`
 --
 ALTER TABLE `pregunta`
   ADD PRIMARY KEY (`pre_id`),
-  ADD KEY `fk_pregunta_tema1_idx` (`fk_tema`),
-  ADD KEY `fk_pregunta_opcion1_idx` (`fk_opcion_correcta`);
+  ADD KEY `fk_pregunta_tema1_idx` (`fk_tema`);
 
 --
 -- Indices de la tabla `sala`
@@ -171,6 +197,24 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `opcion`
+--
+ALTER TABLE `opcion`
+  MODIFY `opc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `pregunta`
+--
+ALTER TABLE `pregunta`
+  MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tema`
+--
+ALTER TABLE `tema`
+  MODIFY `tem_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -184,14 +228,13 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `opcion`
 --
 ALTER TABLE `opcion`
-  ADD CONSTRAINT `fk_opcion_pregunta1` FOREIGN KEY (`fk_pregunta`) REFERENCES `pregunta` (`pre_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_opcion_pregunta1` FOREIGN KEY (`fk_pregunta`) REFERENCES `pregunta` (`pre_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  ADD CONSTRAINT `fk_pregunta_opcion1` FOREIGN KEY (`fk_opcion_correcta`) REFERENCES `opcion` (`opc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_pregunta_tema1` FOREIGN KEY (`fk_tema`) REFERENCES `tema` (`tem_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_pregunta_tema1` FOREIGN KEY (`fk_tema`) REFERENCES `tema` (`tem_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `sala`
