@@ -9,7 +9,7 @@
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" type="text/css" href="ruleta.css">
+  <link rel="stylesheet" type="text/css" href='css/ruleta.css'>
 </head>
 <body>
 <div>

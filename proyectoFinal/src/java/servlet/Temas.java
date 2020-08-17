@@ -54,27 +54,39 @@ public class Temas extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        // 
         BdTemas = new DBTemas();
+        // si se quiere comprobar que es un request de ficheros
         isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
+            // Esta implementación crea instancias de FileItem que mantienen su contenido en memoria
             DiskFileItemFactory factory = new DiskFileItemFactory();
+            //asigna al item el tamaño maximo para memoria ram ya definido antes 
             factory.setSizeThreshold(maxMemSize);
             ServletFileUpload upload = new ServletFileUpload(factory);
+            //asigna al item el tamaño maximo para subirlo ya definido antes
             upload.setSizeMax(maxFileSize);
             String imgDefecto = "";
+            //a convertir una ruta de contenido en una ruta absoluta del sistema de archivos de disco
             filePath = getServletContext().getRealPath("/imgSubidas/");
             try {
+                //crea una lista y le manda los archivos que se habian subido
                 List fileItems = upload.parseRequest(request);
                 Iterator i = fileItems.iterator();
                 while (i.hasNext()) {
                     FileItem fi = (FileItem) i.next();
+                    //si se recibe un archivo de formulario de una solicitud POST 
                     if (fi.isFormField()) {
+                        //Asigna a nombreCambo el nombre que recibio del archivo
                         String nombreCampo = fi.getFieldName();
+                        //para tildes y acentos
                         String valor = new String(fi.getString().getBytes("ISO-8859-1"), "UTF-8");
                         request.setAttribute(nombreCampo, valor);
                     } else {
+                        
                         imgDefecto = fi.getName();
                         if (!imgDefecto.equals("")) {
+                            //para saber si tiene \\ o / , Si tiene \\ entonces se quitan,para solo tener el nombre de la img sin la ruta
                             if (imgDefecto.lastIndexOf("\\") >= 0) {
                                 file = new File(filePath + imgDefecto.substring(imgDefecto.lastIndexOf("\\")));
                             } else {
@@ -89,15 +101,19 @@ public class Temas extends HttpServlet {
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+            //
             Tema temaGen = new Tema();
-            
-            if(request.getAttribute("accion") != null && request.getAttribute("accion").equals("agregarTema")){           
+            //añadir tema
+            if(request.getAttribute("accion") != null && request.getAttribute("accion").equals("agregarTema")){     
+                //asigna al nuevo tema el nombre y imagen recibidos 
                 temaGen.setNombre((String) request.getAttribute("nombreTema"));
                 temaGen.setIcono(imgDefecto);
                 try {
                     ResultSet res = BdTemas.consultarPorNombre(temaGen.getNombre());
+                    //si no esta usando el nombre inserta el nuevo tema determinar si el cursor está en la posición predeterminada del ResultSet.
                     if(!res.isBeforeFirst()){
                         if(BdTemas.insertar(temaGen) != 0){
+                            //si inserta el nuevo tema 
                             out.print("OK");
                         }
                         else{
@@ -111,6 +127,7 @@ public class Temas extends HttpServlet {
                     out.print("Error al consultar el tema: " + BdTemas.getMensaje());
                 }                
             }
+            //modificar tema
             else if(request.getAttribute("accion") != null && request.getAttribute("accion").equals("modificarTema")){
                 temaGen.setNombre((String) request.getAttribute("nombreTema"));
                 if(imgDefecto.equals("")){
