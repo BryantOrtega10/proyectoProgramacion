@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase DBOpciones
+ *
+ * Version 1
+ *
+ * 15 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package datos;
 
 import java.sql.*;
@@ -10,8 +14,9 @@ import java.util.ArrayList;
 import logica.Tema;
 
 /**
- *
- * @author bryda
+ * La clase DBTemas se encarga de la comunicación de la 
+ * información, con la base de datos, relacionada 
+ * con el manejo de los temas en el juego
  */
 public class DBTemas {
     
@@ -20,7 +25,6 @@ public class DBTemas {
     public DBTemas(){
         cn = new DBConexion();
     }
-    
     
     public Boolean modificar(Tema tema) {
         try {
@@ -38,7 +42,6 @@ public class DBTemas {
         }
     }
 
-    
     public Integer insertar(Tema tema) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("INSERT INTO `tema`(`tem_nombre`,"
@@ -59,7 +62,6 @@ public class DBTemas {
         return 0;
     }
 
-    
     public ResultSet consultar() {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT *, (SELECT count(pre_id) FROM pregunta WHERE fk_tema = tem_id) as 'num_preguntas' "
@@ -74,7 +76,6 @@ public class DBTemas {
         return null;
     }
 
-    
     public ResultSet consultarPorId(int id) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
@@ -102,6 +103,7 @@ public class DBTemas {
         }
         return null;
     }
+     
     public Boolean eliminarPorId(int id) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("DELETE "
@@ -116,6 +118,7 @@ public class DBTemas {
         }
         
     }
+    
     public String getMensaje() {
         return cn.getMensaje();
     }
