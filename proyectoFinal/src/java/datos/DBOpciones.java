@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase DBOpciones
+ *
+ * Version 1
+ *
+ * 16 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package datos;
 
 import java.sql.PreparedStatement;
@@ -13,8 +17,9 @@ import logica.Opcion;
 import logica.Pregunta;
 
 /**
- *
- * @author bryda
+ * La clase DBOpciones se encarga de la comunicación
+ * de la información, con la base de datos, relacionada 
+ * con el manejo de los opciones de cada pregunta en el juego
  */
 public class DBOpciones {
     private DBConexion cn;
@@ -22,7 +27,6 @@ public class DBOpciones {
     public DBOpciones(){
         cn = new DBConexion();
     }
-    
     
     public Boolean modificar(Opcion opcion) {
         try {
@@ -39,7 +43,6 @@ public class DBOpciones {
         }
     }
 
-    
     public Integer insertar(Opcion opcion) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("INSERT INTO `opcion`(`opc_opcion`,"
@@ -60,6 +63,11 @@ public class DBOpciones {
         return 0;
     }
     
+    /**
+     * El metodo consultarPorPregunta cunsulta
+     * las opciones relaciondas con una pregunta
+     * en especifico
+     */
     public ResultSet consultarPorPregunta(Integer fkPregunta) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
