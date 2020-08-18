@@ -1,0 +1,70 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("fondoPreguntasSala.jpg");
+    background-size: 100% 100%;
+}
+.contenedorCentrado{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+}
+.preguntaSalaTitulo{
+    margin-top: 100px;
+    margin-bottom: 0px;
+    font-family: Colorado;
+    font-size: 95pt;
+    color: white;
+    text-align: center;
+}
+.preguntaText{
+    overflow: hidden;
+    white-space: initial;
+    margin-top: 0px;
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(241, 223, 192);
+    padding: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 700px;
+    margin-bottom: 10px;
+}
+.contenedorOpciones{
+    display: flex;
+    justify-content: space-between;
+    width: 754px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.opcionText{
+    overflow: hidden;
+    white-space: initial;
+    width: 320px;
+    background-color: rgb(84, 156, 181);
+    border-style: solid;
+    border-color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.opcionText:hover{
+    border-color: white;
+    border-style: dashed;
+    color: white;
+}
+
+
