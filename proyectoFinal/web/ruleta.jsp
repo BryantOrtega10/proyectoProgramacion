@@ -15,8 +15,8 @@
 <div>
   <div id="tema"></div>
   <div class="vara"></div>
-  <img src="ruleta.png" id="ruleta" />
+  <img src="css/Imagenes/ruleta.png" id="ruleta" />
 </div>
-<script src="ruleta.js"></script>
+<script src="js/ruleta.js"></script>
 </body>
 </html>
