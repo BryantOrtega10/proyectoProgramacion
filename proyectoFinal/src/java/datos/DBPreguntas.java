@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Preguntas
+ *
+ * Version 1
+ *
+ * 16 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package datos;
 
 import java.sql.PreparedStatement;
@@ -13,8 +17,9 @@ import logica.Pregunta;
 
 
 /**
- *
- * @author bryda
+ * La clase DBPreguntas se encarga de la comunicación de la 
+ * información, con la base de datos, relacionada 
+ * con el manejo de los preguntas en el juego
  */
 public class DBPreguntas {
     
@@ -63,7 +68,11 @@ public class DBPreguntas {
         return 0;
     }
 
-    
+    /**
+     * El metodo consultarPorTema cunsulta
+     * las preguntas relaciondas con una tema
+     * en especifico
+     */
     public ResultSet consultarPorTema(Integer tema) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
