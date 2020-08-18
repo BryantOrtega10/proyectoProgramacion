@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Preguntas
+ *
+ * Version 1
+ *
+ * 16 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package servlet;
 
 import datos.DBOpciones;
@@ -25,10 +29,9 @@ import logica.Opcion;
 import logica.Pregunta;
 import logica.Tema;
 
-
 /**
- *
- * @author bryda
+ * La clase Preguntas se encarga de manejar las peticiones de
+ * creacióm, edición y eliminación de preguntas
  */
 @WebServlet(name = "Preguntas", urlPatterns = {"/Preguntas"})
 public class Preguntas extends HttpServlet {
@@ -51,22 +54,28 @@ public class Preguntas extends HttpServlet {
         PrintWriter out = response.getWriter();
         BdPreguntas = new DBPreguntas();
         BdOpciones = new DBOpciones();
-        preguntaGen = new Pregunta();
+        preguntaGen = new Pregunta();                                           
         if(request.getParameter("accion") != null &&  request.getParameter("accion").equals("formularioPregMod")){
+            
+            /* Código para mostrar la pantalla de modificación de una pregunta */
             int id = Integer.parseInt(request.getParameter("id"));
             ResultSet res = BdPreguntas.consultarPorId(id);
             
             try {
                 
                 if(res.next()){
+                    
+                    /* Se setean los parámetros de la pregunta */
                     preguntaGen.setIdPregunta(res.getInt("pre_id"));
                     preguntaGen.setOpcionCorrecta(res.getString("pre_opcion_correcta"));
                     preguntaGen.setTema(res.getInt("fk_tema"));
                     preguntaGen.setTxtPregunta(res.getString("pre_pregunta"));
                     
-                    ResultSet resOpc = BdOpciones.consultarPorPregunta(preguntaGen.getIdPregunta());
+                    ResultSet resOpc = BdOpciones.consultarPorPregunta(preguntaGen.getIdPregunta());   /* Se consultan las opciones de la respectiva pregunta*/
                     ArrayList<Opcion> opciones = new ArrayList();
-                    while (resOpc.next()) {                        
+                    while (resOpc.next()) { 
+                        
+                        /* Se agregan las opciones consultadas*/
                         opciones.add(new Opcion(resOpc.getInt("opc_id"),resOpc.getString("opc_opcion"), resOpc.getInt("fk_pregunta")));
                     }
                     preguntaGen.setOpciones(opciones);
@@ -107,10 +116,6 @@ public class Preguntas extends HttpServlet {
                     "                        <td>\n" +
                     "                            <select name=\"opcionCorrecta\">\n" +
                     "                                <option value=\"\">Seleccione una</option>\n");
-                    
-                    
-                    
-                    
                     out.print("<option value=\"A\" "+( preguntaGen.getOpcionCorrecta().equals("A") ? "selected" : "" )+">A</option>\n");
                     out.print("<option value=\"B\" "+( preguntaGen.getOpcionCorrecta().equals("B") ? "selected" : "" )+">B</option>\n");
                     out.print("<option value=\"C\" "+( preguntaGen.getOpcionCorrecta().equals("C") ? "selected" : "" )+">C</option>\n");
@@ -126,7 +131,7 @@ public class Preguntas extends HttpServlet {
                     "            </form>");
                 }
                 else{
-                    out.print("Error tema no encontrados");
+                    out.print("Error pregunta no encontrados");
                 }
             } catch (SQLException ex) {
                 out.print("Error al consultar la pregunta: " + BdPreguntas.getMensaje() + "<br>");
@@ -136,9 +141,14 @@ public class Preguntas extends HttpServlet {
 
         }
         else if(request.getParameter("accion") != null &&  request.getParameter("accion").equals("eliminarPreg")){
+            
+            /* Código para eliminar una pregunta */
             int id = Integer.parseInt(request.getParameter("id"));
             if(BdPreguntas.eliminarPorId(id)){
+                
+                /* La pregunta se elimino con sus opciones */
                 out.print("OK");
+                /* La impresion del OK se toma por AJAX y permite la notificacion en pantalla al usuario*/
             }
             else{
                 out.print("Error al eliminar el tema: " + BdPreguntas.getMensaje());
@@ -146,6 +156,7 @@ public class Preguntas extends HttpServlet {
         }
         else if(request.getParameter("accion") != null &&  request.getParameter("accion").equals("agregarPreg")){
             
+            /* Código para agregar una pregunta */
             String pregunta = request.getParameter("pregunta");
             String opcionCorrecta = request.getParameter("opcionCorrecta");
             int fk_tema = Integer.parseInt(request.getParameter("fk_tema"));
@@ -166,11 +177,14 @@ public class Preguntas extends HttpServlet {
             
             Integer idPregunta = BdPreguntas.insertar(preguntaGen);
             if(idPregunta != 0){
+                
+                /* Existe una pregunta y se guardan sus opciones */
                 for (Opcion opcion : opciones) {
                     opcion.setFkPregunta(idPregunta);
                     BdOpciones.insertar(opcion);
                 }
                 out.print("OK");
+                /* La impresion del OK se toma por AJAX y permite la notificacion en pantalla al usuario*/
             }
             else{
                 out.print("Error al agregar el preguntas: " + BdPreguntas.getMensaje());
@@ -178,6 +192,7 @@ public class Preguntas extends HttpServlet {
         }
         else if(request.getParameter("accion") != null &&  request.getParameter("accion").equals("modificarPreg")){
             
+            /* Código para guardar las modificaciones de una pregunta */
             String pregunta = request.getParameter("pregunta");
             String opcionCorrecta = request.getParameter("opcionCorrecta");
             int id_pregunta = Integer.parseInt(request.getParameter("id_pregunta"));
@@ -206,19 +221,26 @@ public class Preguntas extends HttpServlet {
                     
             
             if(BdPreguntas.modificar(preguntaGen)){
+                
+                /* Si la pregunta se guarda se guardan las nuevas opciones de la pregunta*/
                 for (Opcion opcion : opciones) {
                     BdOpciones.modificar(opcion);
                 }
                 out.print("OK");
+                /* La impresion del OK se toma por AJAX y permite la notificacion en pantalla al usuario*/
             }
             else{
                 out.print("Error al modificar el preguntas: " + BdPreguntas.getMensaje());
             }
         }
-        else{                
-            int fkTema = Integer.parseInt(request.getParameter("fkTema"));
+        else{ 
+            
+            /* Muesta el menu de las preguntas relacionadas con un tema*/
+            int fkTema = Integer.parseInt(request.getParameter("fkTema"));                             /* Se obtiene el tema de la preguntas por URL */
             ResultSet res = BdPreguntas.consultarPorTema(fkTema);
             if(res!= null){
+                
+                /* Se envia al jsp respectivo con la información de las preguntas*/
                 RequestDispatcher view = request.getRequestDispatcher("preguntas.jsp");
                 request.setAttribute("preguntas", res);
                 view.forward(request, response);
