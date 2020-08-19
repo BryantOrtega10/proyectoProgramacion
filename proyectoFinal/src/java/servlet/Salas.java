@@ -6,6 +6,7 @@
 package servlet;
 
 import datos.DBSala;
+import datos.DBTemas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -29,6 +30,7 @@ import logica.Usuario;
 public class Salas extends HttpServlet {
 
     private DBSala BdSala; 
+    private DBTemas BdTemas; 
     private Sala salaGen; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,28 +49,62 @@ public class Salas extends HttpServlet {
         Usuario usuario= (Usuario) misession.getAttribute("usuario");
         
         BdSala = new DBSala();
+        BdTemas = new DBTemas();
         salaGen = new Sala();
         
         
-        if(usuario != null){
+        if(usuario != null){            
             
-            if(request.getParameter("accion") != null && request.getParameter("accion").equals("crearSala")){     
-                
-          
+            if(request.getParameter("accion") != null && request.getParameter("accion").equals("completarSala")){                
+                String[] temasSeleccionados = request.getParameterValues("temas");
+                if(temasSeleccionados.length<=2){
+                    out.print("Error selecciona al menos 3 temas");
+                    return;
+                }
+                try {
+                    ResultSet salaCreacion = BdSala.consultaPorEstadoPorUsuario("enCreacion",usuario.getIdUsuario());
+                    if(salaCreacion.next()){
+                        int rondas = Integer.parseInt(request.getParameter("numRondas"));
+                        
+                        salaGen.setIdSala(salaCreacion.getInt("sal_id"));
+                        salaGen.setCreador(usuario);
+                        salaGen.setNombre(request.getParameter("nm_sala"));
+                        salaGen.setEstado("activa");
+                        salaGen.setTemasRelacion(temasSeleccionados);
+                        salaGen.setRondas(rondas);
+                        
+                        
+                        BdSala.modificar(salaGen);
+                        if(BdSala.insertarRelacionTemas(salaGen)){
+                            out.print("OK");
+                            
+                        }
+                        else{
+                            out.print("Error al modificar la sala: " + BdSala.getMensaje());
+                        }
+                        
+                    }
+                    
+                } catch (SQLException ex) {
+                    out.print("Error al consultar la sala: " + BdSala.getMensaje());
+                }
+            }
+            else if(request.getParameter("accion") != null && request.getParameter("accion").equals("crearSala")){
                 ResultSet salaActiva = BdSala.consultaPorEstadoPorUsuario("activa",usuario.getIdUsuario());
                 try {
                     if(salaActiva.next()){
                         out.print("Existe una sala activa debe mostrar la sala");
-                        response.sendRedirect("Salas?accion=salaEspera");                        
+                        response.sendRedirect("Salas?accion=salaEspera");
                     }
                     else{
                         ResultSet salaCreacion = BdSala.consultaPorEstadoPorUsuario("enCreacion",usuario.getIdUsuario());
                         
                         
                         if(salaCreacion.next()){
-                            
+                            ResultSet temas = BdTemas.consultar();
                             RequestDispatcher view = request.getRequestDispatcher("crearSala.jsp");
                             request.setAttribute("idSalaNueva", salaCreacion.getInt("sal_id"));
+                            request.setAttribute("temas", temas);       
                             view.forward(request, response);
                         }
                         else{                            
@@ -76,8 +112,12 @@ public class Salas extends HttpServlet {
                             salaGen.setEstado("enCreacion");
                             int idSalaNueva = BdSala.insertar(salaGen);
                             if(idSalaNueva!=0){
+                                
+                                
+                                ResultSet temas = BdTemas.consultar();
                                 RequestDispatcher view = request.getRequestDispatcher("crearSala.jsp");
                                 request.setAttribute("idSalaNueva", idSalaNueva);
+                                request.setAttribute("temas", temas);                                
                                 view.forward(request, response);
                             }else{
                                 out.print("Error al crear la sala: " + BdSala.getMensaje());

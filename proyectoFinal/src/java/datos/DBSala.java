@@ -28,10 +28,12 @@ private DBConexion cn;
             PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE `sala` SET "
                     + "`sal_nombre`=?,"
                     + "`sal_estado`=?,"
+                    + "`sal_rondas`=? "
                     + "WHERE `sal_id`=?");
             pstm.setString(1, sala.getNombre());
             pstm.setString(2, sala.getEstado());
-            pstm.setInt(3, sala.getIdSala());
+            pstm.setInt(3, sala.getRondas());
+            pstm.setInt(4, sala.getIdSala());
             pstm.executeUpdate();
             return true;
 
@@ -61,6 +63,21 @@ private DBConexion cn;
             cn.setMensaje(e.getMessage());
         }
         return 0;
+    }
+    public Boolean insertarRelacionTemas(Sala sala) {
+        for (String tema : sala.getTemasRelacion()) {
+            try {
+                PreparedStatement pstm = cn.getConexion().prepareStatement("INSERT INTO `tema_sala`(`fk_sala`, `fk_tema`) VALUES (?,?);", Statement.RETURN_GENERATED_KEYS);
+                pstm.setInt(1, sala.getIdSala());
+                pstm.setString(2, tema);
+                pstm.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e);
+                cn.setMensaje(e.getMessage());
+                return false;
+            }
+        }
+        return true;
     }
 
     public ResultSet consultarPorId(int id) {

@@ -30,7 +30,7 @@ body{
 }
 .selects{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 23pt;
+    font-size: 15pt;
     background-color: rgb(255, 255, 255, .9);
     border: none;
     color: rgb(117, 115, 115);
@@ -38,6 +38,8 @@ body{
     padding-bottom: 3px;
     padding-left: 5px;
     margin-left: 3px;
+    width: 260px;
+    max-height: 140px;
 }
 #numRondas{
     width: 166px;
@@ -54,23 +56,55 @@ body{
 .numRondasCont{
     display: flex;
     align-items: center;
-    margin-right: 112px;
     height: 70px;
 }
 .temasCont{
     display: flex;
     align-items: center;
-    margin-left: 66px;;
-    height: 70px;
+    /* height: 70px; */
 }
 .continuarbtn{
     text-decoration: none;
     font-size: 30pt;
     font-family: Colorado;
-    color: black;
+    color: #FFF;
     background-color: rgb(4, 144, 187);
     padding: 3px;
     padding-right: 20px;
     padding-left: 20px;
     margin-top: 25px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+.parteCentral {
+    display: block;
+    width: 50px;
+    padding: 0 10px;
+    text-align: center;
+    line-height: 0;
+}
+
+.parteCentral button {
+    background: #0490bb;
+    border: 0;
+    color: #FFF;
+    cursor: pointer;
+    border: 1px solid #000;
+    margin: 15px 0px;
+    border-radius: 5px;
+}
+.ladoDerecho .selects {height: 150px;}
+.sinmargen{
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 23px;
+}
+.codigoCont input {
+    padding: 7px 15px;
+    font-size: 17px;
+    border-radius: 6px;
+    border: 0;
+    background: rgb(255 255 255 / 90%);
+    outline: none;
+    margin-left: 15px;
 }

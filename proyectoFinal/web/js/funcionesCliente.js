@@ -58,4 +58,46 @@ function iniciarSesAjax() {
   
 }
 
+function enviarTemas(){
+    var temasDisp = document.getElementById("temasI");
+    var temasFinal = document.getElementById("temasF");
+    while(temasDisp.selectedOptions.length > 0){
+        temasFinal.appendChild(temasDisp.selectedOptions[0]); 
+    }
+    
+}
+function devolverTemas(){
+    var temasDisp = document.getElementById("temasI");
+    var temasFinal = document.getElementById("temasF");
+    while(temasFinal.selectedOptions.length > 0){
+        temasDisp.appendChild(temasFinal.selectedOptions[0]); 
+    }
+}
 
+function completarSala() {
+    
+    var temasFinal = document.getElementById("temasF");
+    for (var i = 0; i < temasFinal.options.length; i++) {
+        temasFinal.options[i].selected = true;
+    }    
+    var fd = new FormData(document.getElementById("formcompletarSala"));
+    
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            if(this.responseText==="OK"){
+                alert("Sala creada satisfactoriamente");
+                window.open("Salas?accion=salaEspera", "_self");
+            }
+            else{
+                alert(this.responseText);
+                
+            }
+        }      
+    };
+  xhttp.open("POST", "Salas", true);
+  xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  xhttp.send(urlencodeFormData(fd));
+  
+}

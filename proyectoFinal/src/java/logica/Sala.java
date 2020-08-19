@@ -5,6 +5,9 @@
  */
 package logica;
 
+import java.util.ArrayList;
+import servlet.Temas;
+
 /**
  *
  * @author bryda
@@ -14,7 +17,10 @@ public class Sala {
     private String nombre;
     private String estado;
     private Usuario creador; 
-
+    private String[] temasRelacion;
+    private int rondas;
+    
+    
     public Sala(){
         this.idSala = 0;
         this.nombre = "";
@@ -51,6 +57,24 @@ public class Sala {
     public void setCreador(Usuario creador) {
         this.creador = creador;
     }
+
+
+    public String[] getTemasRelacion() {
+        return temasRelacion;
+    }
+
+    public void setTemasRelacion(String[] temasRelacion) {
+        this.temasRelacion = temasRelacion;
+    }
+
+    public int getRondas() {
+        return rondas;
+    }
+
+    public void setRondas(int rondas) {
+        this.rondas = rondas;
+    }
+    
     
     
 }

@@ -92,7 +92,7 @@ public class UsuarioServlet extends HttpServlet {
                     out.print("OK");
                 }
                 else{
-                    out.print("Usuario o contrasñea incorrectos");
+                    out.print("Usuario o contraseña incorrectos");
                 }
             } catch (SQLException ex) {
                 out.print("Error al consultar el usuario: " + BdUsuario.getMensaje());
