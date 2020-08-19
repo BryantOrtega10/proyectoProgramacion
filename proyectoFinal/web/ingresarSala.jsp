@@ -24,7 +24,7 @@
                 </table>
                 <div class='crSl'>
                     <p class='pregunta'>¿No tiene sala? Puede...</p>
-                    <a href='' class='respuesta'>Crear una sala</a>
+                    <a href='Salas?accion=crearSala' class='respuesta'>Crear una sala</a>
                 </div>
             </div>
         </div>

@@ -4,8 +4,27 @@
         <servlet-name>Temas</servlet-name>
         <servlet-class>servlet.Temas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <servlet-class>servlet.UsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Salas</servlet-name>
+        <servlet-class>servlet.Salas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Temas</servlet-name>
         <url-pattern>/Temas</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <url-pattern>/UsuarioServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Salas</servlet-name>
+        <url-pattern>/Salas</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 </web-app>

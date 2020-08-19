@@ -1,0 +1,76 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("Imagenes/fondoCrearSala.jpg");
+    background-size: 100% 100%;
+}
+.centrado{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25pt;
+    color: rgb(75, 68, 68)
+}
+.crearSalaTitulo{
+    margin-top: 170px;
+    margin-bottom: 0px;
+    font-family: Colorado;
+    font-size: 75pt;
+    color: white;
+    text-align: center;
+}
+.selects{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 23pt;
+    background-color: rgb(255, 255, 255, .9);
+    border: none;
+    color: rgb(117, 115, 115);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    margin-left: 3px;
+}
+#numRondas{
+    width: 166px;
+}
+.codigoCont{
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 70px;
+}
+.codigo{
+    margin-left: 3px;
+}
+.numRondasCont{
+    display: flex;
+    align-items: center;
+    margin-right: 112px;
+    height: 70px;
+}
+.temasCont{
+    display: flex;
+    align-items: center;
+    margin-left: 66px;;
+    height: 70px;
+}
+.continuarbtn{
+    text-decoration: none;
+    font-size: 30pt;
+    font-family: Colorado;
+    color: black;
+    background-color: rgb(4, 144, 187);
+    padding: 3px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 25px;
+}

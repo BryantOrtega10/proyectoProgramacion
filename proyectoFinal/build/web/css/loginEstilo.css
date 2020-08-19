@@ -11,6 +11,7 @@ body{
     background-size: 100% 100%;
     display: flex;
     justify-content: center;
+    font-family: Roboto, sans-serif;
 }
 .loginPanel{
     display: inline-block;
@@ -36,34 +37,33 @@ body{
 #usuario{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 20pt;
-    width: 170px;
+    width: 430px;
     background-color: rgb(255, 255, 255, .9);
     border: none;
     color: rgb(117, 115, 115);
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
 }
-.espacioContraseña{
+.espacioContraseÃƒÂ±a{
     padding-top: 12px;
 }
 #pass{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 20pt;
-    width: 170px;
+    width: 430px;
     background-color: rgb(255, 255, 255, .9);
     border: none;
     color: rgb(117, 115, 115);
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
 }
 .buttonPanel{
     display: flex;
     justify-content: center;
 }
 .loginButton{
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 20pt;
     color: rgb(8, 8, 94, .7);
     background-color: rgb(255, 255, 255, .6);
@@ -97,4 +97,52 @@ body{
     margin-left: 2px;
     color: rgb(75, 9, 9);
     text-decoration: none;
+}
+.loginSpace input {
+    width: 250px;
+    border-radius: 5px;
+}
+.datosRegistro {
+    padding-top: 160px;
+}
+
+.datosRegistro input {
+    font-size: 20px;
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    width: 400px;
+    border: 1px solid #CCC;
+    outline: none;
+    transition: all 0.5s;
+}
+
+.datosRegistro button.loginButton {
+    width: 260px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+a.volver {
+    color: #FFF;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 25px;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+a.volver:hover {color: #f9e8ca;}
+
+.datosRegistro input:focus {
+    box-shadow: 0px 0px 12px #FFF;
+}
+div#respIniciar {
+    text-align: center;
+    margin-top: 25px;
+    color: #cc1515;
+    background: rgb(255 255 255 / 56%);
+    padding: 10px 20px;
+    border: 1px solid #F00;
+    border-radius: 5px;
+    display: none;
 }
