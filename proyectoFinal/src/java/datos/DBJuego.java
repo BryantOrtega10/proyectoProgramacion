@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase DBOpciones
+ *
+ * Version 1
+ *
+ * 16 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package datos;
 
 import java.sql.PreparedStatement;
@@ -13,8 +17,9 @@ import logica.Opcion;
 import logica.Ronda;
 
 /**
- *
- * @author bryda
+ * La clase DBJuego se encarga del manejo de la informacion,
+ * en base de datos, relacionada con 
+ * el manejo de las rondas en juego.
  */
 public class DBJuego {
     private DBConexion cn;
