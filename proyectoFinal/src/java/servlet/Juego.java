@@ -60,6 +60,23 @@ public class Juego extends HttpServlet {
             
             if(request.getParameter("accion") != null && request.getParameter("accion").equals("podio")){
                 
+                try{
+                    int idRonda = Integer.parseInt(request.getParameter("idRonda"));
+                    ResultSet sala = BdJuego.salaxRonda(idRonda);
+                    if(sala.next()){
+                        ResultSet puntuacion = BdJuego.puntosPorSala(sala.getInt("sal_id"));
+                        RequestDispatcher view = request.getRequestDispatcher("podio.jsp");
+                        request.setAttribute("miIdUsuario", usuario.getIdUsuario()); 
+                        request.setAttribute("idUsuarioOwner", sala.getInt("fk_usuario_owner")); 
+                        request.setAttribute("idRonda", idRonda); 
+                        request.setAttribute("puntuacion", puntuacion);                               
+                        view.forward(request, response);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                    out.print("Error al consultar pregunta 123 : " + BdJuego.getMensaje());
+                    
+                }
             }
             if(request.getParameter("accion") != null && request.getParameter("accion").equals("obtenerPuntuaciones")){
                 try{
@@ -89,8 +106,6 @@ public class Juego extends HttpServlet {
                 }
             }
             else if(request.getParameter("accion") != null && request.getParameter("accion").equals("siguienteRonda")){
-                //Terminar la ronda del id
-                
                 try{ 
                     int idRonda = Integer.parseInt(request.getParameter("idRonda"));
                     BdJuego.terminarRondaxId(idRonda);
@@ -131,8 +146,6 @@ public class Juego extends HttpServlet {
                             }
                             
                         }
-                        
-                        
                     }
                     
 

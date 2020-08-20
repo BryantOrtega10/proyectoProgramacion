@@ -15,7 +15,8 @@ body{
     height: 100%;
     display: flex;
     align-items: center;
-    margin-left: 182px;
+    width: 70%;
+    margin: auto;
 }
 .tituloPodio{
     margin-bottom: 360px;
@@ -29,10 +30,10 @@ body{
     width: 600px;
     background-image: url("Imagenes/podio.png");
     background-size: 100% 100%;
-    margin-left: 75px;
     margin-top: 200px;
     font-family: Colorado;
     font-size: 35pt;
+    margin: auto;
 }
 .ganador1{
     margin-top: 8px;
@@ -45,4 +46,20 @@ body{
 .ganador3{
     margin-left: 25px;
     margin-top: -45px;
+}
+.botonIniciar{
+    text-decoration: none;
+    font-family: Colorado;
+    font-size: 40pt;
+    background-color: white;
+    color: black;
+    padding-top: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+.botonIniciar:hover{
+    background-color: black;
+    color: white;
 }

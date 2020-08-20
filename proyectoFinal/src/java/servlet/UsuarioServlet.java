@@ -90,6 +90,9 @@ public class UsuarioServlet extends HttpServlet {
                     misession.setAttribute("usuario",usuGen);
                     
                     out.print("OK");
+                    
+                    
+                    
                 }
                 else{
                     out.print("Usuario o contraseña incorrectos");

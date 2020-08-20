@@ -21,8 +21,7 @@
     <body>
         <div class="contMenu">
             <a href="Temas">Temas</a>
-            <a href="Usuarios">Usuarios</a>
-            <a href="Cerrar">Cerrar S</a>
+            <a href="Cerrar">Cerrar Sesion</a>
         </div>
         <div class="contDerecho">
             <h1>Temas</h1>

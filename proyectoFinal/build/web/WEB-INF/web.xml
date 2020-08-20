@@ -16,6 +16,10 @@
         <servlet-name>Juego</servlet-name>
         <servlet-class>servlet.Juego</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Cerrar</servlet-name>
+        <servlet-class>servlet.Cerrar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Temas</servlet-name>
         <url-pattern>/Temas</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Juego</servlet-name>
         <url-pattern>/Juego</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cerrar</servlet-name>
+        <url-pattern>/Cerrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

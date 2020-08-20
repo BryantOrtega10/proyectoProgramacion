@@ -4,7 +4,13 @@
     Author     : oscar
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    ResultSet puntuacion = (ResultSet)request.getAttribute("puntuacion");
+    
+    
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,10 +22,27 @@
         <div class="centrado">
             <p class="tituloPodio">Podio</p>
             <div class="podioImagen">
-                <p class="ganador1">Ganador 1</p>
-                <p class="ganador2">Ganador 2</p>
-                <p class="ganador3">Ganador 3</p>
+                <% if(puntuacion.next()){
+                %>
+                    <p class="ganador1"><%= puntuacion.getString("usu_login")%></p>
+                <%
+                }
+                %>
+                <% if(puntuacion.next()){
+                %>
+                    <p class="ganador2"><%= puntuacion.getString("usu_login")%></p>
+                <%
+                }
+                %>
+                <% if(puntuacion.next()){
+                %>
+                    <p class="ganador3"><%= puntuacion.getString("usu_login")%></p>
+                <%
+                }
+                %>
+                
             </div>
+            <a href="Salas" class="botonIniciar">Volver al inicio</a>
         </div>
     </body>
 </html>

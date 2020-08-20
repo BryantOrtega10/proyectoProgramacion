@@ -172,7 +172,7 @@ public class DBJuego {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT sum(ru.puntos) as puntosTotales,"
                     + " u.usu_login from ronda_usuario as ru JOIN usuario as u on u.usu_id = ru.fk_usuario "
                     + "WHERE ru.fk_ronda in(SELECT r.ron_id from ronda r WHERE r.fk_tema_sala "
-                    + "in(SELECT ts.tem_sal_id from tema_sala ts WHERE ts.fk_sala= ? )) group by ru.fk_usuario");
+                    + "in(SELECT ts.tem_sal_id from tema_sala ts WHERE ts.fk_sala= ? ))  group by ru.fk_usuario ORDER by puntosTotales DESC");
             pstm.setInt(1, idSala);
             ResultSet res = pstm.executeQuery();
             return res;

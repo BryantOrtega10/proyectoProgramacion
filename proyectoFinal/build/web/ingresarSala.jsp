@@ -14,6 +14,7 @@
         <script src="js/funcionesCliente.js"></script>
     </head>
     <body>
+        <a href='Cerrar' class='respuesta'>Cerrar sesion</a>
         <div class='centrado'>
             <div class='ingresarSalaContenedor'>
                 <p class='ingresarSalaTitulo'>Ingresar a sala</p>

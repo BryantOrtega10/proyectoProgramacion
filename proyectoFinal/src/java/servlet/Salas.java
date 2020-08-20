@@ -215,8 +215,15 @@ public class Salas extends HttpServlet {
                 }
             }
             else{
-                RequestDispatcher view = request.getRequestDispatcher("ingresarSala.jsp");
-                view.forward(request, response);
+                
+                if(usuario.getRol().equals("admin")){
+                    response.sendRedirect("Temas");
+                }
+                else{
+                    RequestDispatcher view = request.getRequestDispatcher("ingresarSala.jsp");
+                    view.forward(request, response);
+                }
+                
             }
             
         }
