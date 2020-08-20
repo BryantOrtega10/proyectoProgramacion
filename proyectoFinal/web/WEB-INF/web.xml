@@ -12,6 +12,10 @@
         <servlet-name>Salas</servlet-name>
         <servlet-class>servlet.Salas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Juego</servlet-name>
+        <servlet-class>servlet.Juego</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Temas</servlet-name>
         <url-pattern>/Temas</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Salas</servlet-name>
         <url-pattern>/Salas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Juego</servlet-name>
+        <url-pattern>/Juego</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>15</session-timeout>

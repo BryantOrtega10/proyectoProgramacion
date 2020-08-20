@@ -28,12 +28,16 @@ private DBConexion cn;
             PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE `sala` SET "
                     + "`sal_nombre`=?,"
                     + "`sal_estado`=?,"
-                    + "`sal_rondas`=? "
+                    + "`sal_rondas`=?, "
+                    + "`sal_ronda_actual`=?,"
+                    + "`sal_estado_int`=? "
                     + "WHERE `sal_id`=?");
             pstm.setString(1, sala.getNombre());
             pstm.setString(2, sala.getEstado());
             pstm.setInt(3, sala.getRondas());
-            pstm.setInt(4, sala.getIdSala());
+            pstm.setInt(4, sala.getRondaActual());
+            pstm.setString(5, sala.getEstadoInt());            
+            pstm.setInt(6, sala.getIdSala());
             pstm.executeUpdate();
             return true;
 
@@ -97,6 +101,7 @@ private DBConexion cn;
         }
         return 0;
     }   
+    
     public ResultSet consultarPorId(int id) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "

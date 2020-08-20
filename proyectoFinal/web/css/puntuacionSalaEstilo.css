@@ -1,0 +1,72 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("Imagenes/fondoPuntajes.jpg");
+    background-size: 100% 100%;
+}
+.contenedorCentrado{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+}
+.preguntaSalaTitulo{
+    margin-top: 160px;
+    margin-bottom: 0px;
+    margin-right: 720px;
+    font-family: Colorado;
+    font-size: 85pt;
+    color: white;
+    text-align: left;
+}
+.columnaTitulo{
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.lineaDivisora{
+    background-image: url("Imagenes/separadorPuntuacion.png");
+    width: 34px;
+}
+.celdaJugador{
+    width: 400px;
+    text-align: center;
+    border-style: dashed;
+    border-color: white;
+    border-width: 5px;
+    background-color: rgb(241, 223, 192);
+}
+.celdaPuntuacion{
+    width: 300px;
+    text-align: center;
+    border-style: dashed;
+    border-color: white;
+    border-width: 5px;
+    background-color: rgb(241, 223, 192);
+}
+.botonIniciar{
+    text-decoration: none;
+    font-family: Colorado;
+    font-size: 40pt;
+    background-color: white;
+    color: black;
+    padding-top: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+.botonIniciar:hover{
+    background-color: black;
+    color: white;
+}

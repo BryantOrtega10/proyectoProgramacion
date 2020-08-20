@@ -61,7 +61,7 @@
                     <p class="notificacionEspera">Esperando a que se unan todos...</p>
                     <% 
                         if(miIdUsuario.equals(idUsuarioOwner)){
-                            out.print("<a href=\"\" class=\"botonIniciar\">Iniciar</a>");
+                            out.print("<a href=\"Juego?accion=iniciarJuego\" class=\"botonIniciar\">Iniciar</a>");
                         }
                     %>
                     

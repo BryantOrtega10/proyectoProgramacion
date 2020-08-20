@@ -19,12 +19,14 @@ public class Sala {
     private Usuario creador; 
     private String[] temasRelacion;
     private int rondas;
-    
+    private String estadoInt;
+    private int rondaActual;
     
     public Sala(){
         this.idSala = 0;
         this.nombre = "";
         this.estado = "";
+        this.estadoInt = "enSala";
     }
     public int getIdSala() {
         return idSala;
@@ -73,6 +75,22 @@ public class Sala {
 
     public void setRondas(int rondas) {
         this.rondas = rondas;
+    }
+
+    public String getEstadoInt() {
+        return estadoInt;
+    }
+
+    public void setEstadoInt(String estadoInt) {
+        this.estadoInt = estadoInt;
+    }
+
+    public int getRondaActual() {
+        return rondaActual;
+    }
+
+    public void setRondaActual(int rondaActual) {
+        this.rondaActual = rondaActual;
     }
     
     

@@ -8,7 +8,7 @@ html{
 }
 body{
     height: 97%;
-    background-image: url("fondoPreguntasSala.jpg");
+    background-image: url("Imagenes/fondoPreguntasSala.jpg");
     background-size: 100% 100%;
 }
 .contenedorCentrado{
@@ -20,7 +20,7 @@ body{
     font-size: 20pt;
 }
 .preguntaSalaTitulo{
-    margin-top: 100px;
+    margin-top: 280px;
     margin-bottom: 0px;
     font-family: Colorado;
     font-size: 95pt;
@@ -68,3 +68,16 @@ body{
 }
 
 
+
+div#timer {
+    font-size: 65px;
+    position: relative;
+    margin-bottom: 50px;
+    color: #FFF;
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left: -65px;
+    text-align: center;
+    width: 130px;
+}

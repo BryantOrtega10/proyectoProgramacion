@@ -4,29 +4,68 @@
     Author     : oscar
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    ResultSet pregunta = (ResultSet)request.getAttribute("pregunta");
+    ResultSet opciones = (ResultSet)request.getAttribute("opciones");
+    ResultSet ronda = (ResultSet)request.getAttribute("ronda");
+    
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'> 
-        <title>NN</title>
-        <link rel="stylesheet" href="preguntaSalaEstilo.css">
+        <title>Pregunta</title>
+        <link rel="stylesheet" href="css/preguntaSalaEstilo.css">
+        <script src="js/contadorPregunta.js"></script>
 
     </head>
     <body>
-        <div class="contenedorCentrado">
-            <p class='preguntaSalaTitulo'>Preguntas</p>
-            <div class="contenedorPregunta">
-                <p class="preguntaText">¿Por que la gallina cruzo la calle?</p>
+        <form action="Juego" method="post" id="formAgregarPregunta">
+        <%  
+            if(ronda.next()){
+        %>    
+        <input type="hidden" id="tiempoFinal" value="<%= ronda.getString("fechaCreacion")%>" />
+        <input type="hidden" name="idRonda" value="<%= ronda.getInt("ron_id")%>" />
+        <input type="hidden" id="tiempoActual" name="tiempoActual" value="60" />
+        <input type="hidden" id="opcionSeleccionada" name="opcionSeleccionada" />
+        <input type="hidden" value="agregarPuntosUser" name="accion" />
+         <%} %>
+            
+        <%
+        if(pregunta.next()){
+        %>
+            <div id="timer">60</div>
+            <div class="contenedorCentrado">
+                <p class='preguntaSalaTitulo'></p>
+                <div class="contenedorPregunta">
+                    <p class="preguntaText"><%= pregunta.getString("pre_pregunta")%></p>
+                </div>
+                <div class="contenedorOpciones">
+                    <% if(opciones.next()){ %>
+                        <p class="opcionText" id="opcionA" onclick="asignarOpcion('A');">A. <%= opciones.getString("opc_opcion")%></p>
+                        <input type="hidden" name="idOpcionA" value="<%= opciones.getInt("opc_id")%>" />                    
+                    <% } %>
+                    <% if(opciones.next()){ %>
+                        <p class="opcionText" id="opcionB" onclick="asignarOpcion('B');">B. <%= opciones.getString("opc_opcion")%></p>
+                        <input type="hidden" name="idOpcionB" value="<%= opciones.getInt("opc_id")%>" />
+                    <% } %>
+                </div>
+                <div class="contenedorOpciones">
+                    <% if(opciones.next()){ %>
+                        <p class="opcionText" id="opcionC" onclick="asignarOpcion('C');">C. <%= opciones.getString("opc_opcion")%></p>
+                        <input type="hidden" name="idOpcionC" value="<%= opciones.getInt("opc_id")%>" />
+                    <% } %>
+                    <% if(opciones.next()){ %>
+                        <p class="opcionText" id="opcionD" onclick="asignarOpcion('D');">D. <%= opciones.getString("opc_opcion")%></p>
+                        <input type="hidden" name="idOpcionD" value="<%= opciones.getInt("opc_id")%>" />
+                    <% } %>
+                </div>
             </div>
-            <div class="contenedorOpciones">
-                <p class="opcionText">A. Porque buscaba el bien</p>
-                <p class="opcionText">B. Porque quería llegar al otro lado</p>
-            </div>
-            <div class="contenedorOpciones">
-                <p class="opcionText">C. Para ir donde ninguna gallina ha llegado jamás</p>
-                <p class="opcionText">D. Porque la fuerza estaba con la gallina</p>
-            </div>
-        </div>
+        <% }        
+        %>
+        </form>
+        
     </body>
 </html>

@@ -4,15 +4,14 @@
  * and open the template in the editor.
  */
 
-
 setInterval(function(){
     var xhttp = new XMLHttpRequest();
     xhttp.onload  = function() {
         if (this.status === 200) {
-            document.getElementById("bodyUsuarios").innerHTML = this.responseText;
+            document.getElementById("jugadores").innerHTML = this.responseText;
         }      
     };
-  xhttp.open("GET", "Salas?accion=recargarUsuariosEspera&idSala="+document.getElementById('idSala').value, true);
+  xhttp.open("GET", "Juego?accion=obtenerPuntuaciones&idRonda="+document.getElementById("idRonda").value, true);
   xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
   xhttp.send();
 },5000);
@@ -26,9 +25,7 @@ setInterval(function(){
             }
         }      
     };
-  xhttp.open("GET", "Juego?accion=verificarEstado", true);
+  xhttp.open("GET", "Juego?accion=verificarEstado&idRonda="+document.getElementById("idRonda").value, true);
   xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
   xhttp.send();
 },5000);
-
-
