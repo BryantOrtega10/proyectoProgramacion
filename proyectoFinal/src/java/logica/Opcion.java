@@ -1,18 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Opcion
+ *
+ * Version 1
+ *
+ * 17 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 /**
- *
- * @author bryda
+ * La clase Usuario es la clase base
+ * para instanciar Usuarios.
  */
 public class Opcion {
     private int idOpcion;
     private String txtOpcion;
-    private int fkPregunta;
+    private int fkPregunta;     /* LLave foranea que lo relaciona con la respectiva pregunta*/
 
     public Opcion(){
         this.idOpcion = 0;

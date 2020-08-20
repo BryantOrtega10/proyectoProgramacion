@@ -1,25 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Sala
+ *
+ * Version 1
+ *
+ * 18 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 import java.util.ArrayList;
 import servlet.Temas;
 
 /**
- *
- * @author bryda
+ * La clase Sala es la clase base
+ * para instanciar salas.
  */
 public class Sala {
     private int idSala;
     private String nombre;
-    private String estado;
+    private String estado;             /* Determina si la sala ya tiene sus atributos */ 
     private Usuario creador; 
-    private String[] temasRelacion;
+    private String[] temasRelacion;    /* Temas que contendra la sala */
     private int rondas;
-    private String estadoInt;
+    private String estadoInt;          /* Determina si la sala ya esta en juego */
     private int rondaActual;
     
     public Sala(){

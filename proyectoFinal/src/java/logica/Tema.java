@@ -1,15 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Tema
+ *
+ * Version 1
+ *
+ * 16 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author bryda
+ * La clase Temaa es la clase base
+ * para instanciar las tenas.
  */
 public class Tema {
     private int idtema;

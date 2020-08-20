@@ -1,18 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Ronda
+ *
+ * Version 1
+ *
+ * 18 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 /**
- *
- * @author bryda
+ * La clase Ronda es la clase encargada
+ * de guardar informacion de referencia de estass.
  */
 public class Ronda {
     private int idRonda;
-    private int fkTemaSala;
-    private int fkPregunta;
+    private int fkTemaSala;  /* Llave foranea que la relaciona con el respectivo tema */
+    private int fkPregunta;  /* Llave foranea que la relaciona con la respectiva pregunta */
     private String estado;
 
     public int getIdRonda() {

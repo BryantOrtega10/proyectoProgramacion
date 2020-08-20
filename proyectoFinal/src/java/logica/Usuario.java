@@ -1,20 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Usuario
+ *
+ * Version 1
+ *
+ * 19 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 /**
- *
- * @author bryda
+ * La clase Usuario es la clase base
+ * para instanciar Usuarios.
  */
 public class Usuario {
     private int idUsuario;
     private String login;
     private String pass;
     private String email;
-    private String rol;
+    private String rol;       /* Especifica si el usuario es admin o jugador */
 
     public int getIdUsuario() {
         return idUsuario;

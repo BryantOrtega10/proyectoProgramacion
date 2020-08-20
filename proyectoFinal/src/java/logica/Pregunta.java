@@ -1,20 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Pregunta
+ *
+ * Version 1
+ *
+ * 17 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package logica;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author bryda
+ * La clase Pregunta es la clase base
+ * para instanciar las preguntas.
  */
 public class Pregunta {
     private int idPregunta;
     private String txtPregunta;
-    private int fkTema;
+    private int fkTema;             /* Llave foranea que la relaciona con el respectivo tema */
     private String opcionCorrecta;
     private ArrayList<Opcion> opciones;
 
