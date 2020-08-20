@@ -101,3 +101,25 @@ function completarSala() {
   xhttp.send(urlencodeFormData(fd));
   
 }
+
+function ingresarSala() {
+    var fd = new FormData(document.getElementById("formIngresarSala"));
+    
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onload  = function() {
+        if (this.status === 200) {
+            if(this.responseText==="OK"){
+                window.open("Salas?accion=salaEspera", "_self");
+            }
+            else{
+                alert(this.responseText);
+                
+            }
+        }      
+    };
+  xhttp.open("POST", "Salas", true);
+  xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  xhttp.send(urlencodeFormData(fd));
+  
+}

@@ -63,3 +63,17 @@ table{
     font-family: Colorado;
     font-size: 45pt;
 }
+.continuarbtn{
+    text-decoration: none;
+    font-size: 30pt;
+    font-family: Colorado;
+    color: #FFF;
+    background-color: rgb(4, 144, 187);
+    padding: 3px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 25px;
+    border: 1px solid #000;
+    border-radius: 5px;
+  margin: 0;
+}

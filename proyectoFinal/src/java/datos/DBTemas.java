@@ -104,6 +104,20 @@ public class DBTemas {
         return null;
     }
      
+    public ResultSet consultarPorSala(int idSala) {
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT t.* "
+                    + " FROM tema AS t JOIN tema_sala AS ts ON t.tem_id = ts.fk_tema WHERE ts.fk_sala = ?");
+            pstm.setInt(1, idSala);
+            ResultSet res = pstm.executeQuery();
+            return res;
+        } catch (SQLException e) {
+            System.out.println(e);
+            cn.setMensaje(e.getMessage());
+        }
+        return null;
+    }
+     
     public Boolean eliminarPorId(int id) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("DELETE "

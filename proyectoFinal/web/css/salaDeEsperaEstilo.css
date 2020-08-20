@@ -1,0 +1,128 @@
+@font-face{
+    font-family: Colorado;
+    src: url("Fuentes/colorado.otf");
+}
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    height: 97%;
+    background-image: url("Imagenes/fondoSalaDeEspera.jpg");
+    background-size: 100% 100%;
+}
+.contenedorCentrado{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+}
+.contenedorTablas{
+    display: flex;
+    margin-top: 35px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.tablaTema{
+    border: 5px solid;
+    border-top: none;
+    border-left: none;
+    border-image-slice: 0 50 50 0;
+    border-image-source: url("Imagenes/lineaDivVertical.png");
+    border-image-repeat: stretch;
+    border-image-width: 10px;
+    width: 410px;
+    display: flex;
+}
+.columnaTitulo{
+    font-family: Colorado;
+    font-size: 50pt;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.celdaTitulo{
+    width: 400px;
+    border: 5px solid;
+    border-top: none;
+    border-left: none;
+    border-image-slice: 0 50 50 50;
+    border-image-source: url("Imagenes/lineaDivHorizontal.png");
+    border-image-repeat: stretch;
+    border-image-width: 10px;
+    display: inline-block;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+}
+.imgTema{
+    text-align: center;
+    height: 80px;
+    width: 80px;
+    background-image: url("Imagenes/circuloTema.png");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.celdaJugador{
+    text-align: center;
+}
+.contenedorBoton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    margin-top: 30px;
+}
+.notificacionEspera{
+    font-family: Colorado;
+    font-size: 40pt;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.botonIniciar{
+    text-decoration: none;
+    font-family: Colorado;
+    font-size: 40pt;
+    background-color: white;
+    color: black;
+    padding-top: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+.botonIniciar:hover{
+    background-color: black;
+    color: white;
+}
+.celdaTema {
+    width: 33%;
+    text-align: center;
+    font-size: 20px;
+}
+.contTemasSal{
+    margin-top: 4px;
+}
+td.celdaJugador.mi_usuario {
+    color: #FFF;
+    font-weight: bold;
+}
+.codigoCont {
+    color: #FFF;
+}
+
+.codigoCont p {
+    display: inline-flex;
+}
+.maximoContenedorTop {
+    max-height: 510px;
+    overflow-y: scroll;
+}

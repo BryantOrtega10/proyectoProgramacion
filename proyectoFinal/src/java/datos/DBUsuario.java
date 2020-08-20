@@ -108,6 +108,21 @@ public class DBUsuario {
         return null;
     }
     
+    public ResultSet consultarPorSala(int idSala, int idDuenio) {
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT usu_id,usu_login "
+                    + " FROM usuario WHERE usu_id = ? or usu_id IN (select fk_usuario from sala_usuario where fk_sala = ?)");
+            pstm.setInt(1, idDuenio);
+            pstm.setInt(2, idSala);
+            ResultSet res = pstm.executeQuery();
+            return res;
+        } catch (SQLException e) {
+            System.out.println(e);
+            cn.setMensaje(e.getMessage());
+        }
+        return null;
+    }
+    
     
     public Boolean eliminarPorId(int id) {
         try {

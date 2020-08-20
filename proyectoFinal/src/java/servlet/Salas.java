@@ -7,6 +7,7 @@ package servlet;
 
 import datos.DBSala;
 import datos.DBTemas;
+import datos.DBUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -31,6 +32,7 @@ public class Salas extends HttpServlet {
 
     private DBSala BdSala; 
     private DBTemas BdTemas; 
+    private DBUsuario BdUsuario; 
     private Sala salaGen; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,12 +52,95 @@ public class Salas extends HttpServlet {
         
         BdSala = new DBSala();
         BdTemas = new DBTemas();
+        BdUsuario = new DBUsuario();
         salaGen = new Sala();
         
         
         if(usuario != null){            
             
-            if(request.getParameter("accion") != null && request.getParameter("accion").equals("completarSala")){                
+            
+            if(request.getParameter("accion") != null && request.getParameter("accion").equals("recargarUsuariosEspera")){
+                try {    
+
+                    ResultSet salaActiva = BdSala.consultaPorEstadoPorUsuario("activa",usuario.getIdUsuario());
+                    if(salaActiva.next()){
+                        ResultSet usuarios = BdUsuario.consultarPorSala(salaActiva.getInt("sal_id"), salaActiva.getInt("fk_usuario_owner"));
+                        
+                        while (usuarios.next()){
+                            out.println("<tr>"+
+                                "<td class=\"celdaJugador "+(usuarios.getInt("usu_id") == salaActiva.getInt("fk_usuario_owner")  ? "mi_usuario" : "")+" \">"+usuarios.getString("usu_login")+"</td>"+
+                            "</tr>");
+                        }
+                        
+                        
+                        
+                    }
+                    
+                } catch (SQLException ex) {
+                    out.print("Error al consultar salas "+BdSala.getMensaje() );
+                }
+            }
+            else if(request.getParameter("accion") != null && request.getParameter("accion").equals("ingresarSala")){
+                try {
+                    int codigoSala = Integer.parseInt(request.getParameter("codigoSala"));
+                    ResultSet salaActivaPrev = BdSala.consultaPorEstadoPorUsuario("activa",usuario.getIdUsuario());
+                    
+                    if(salaActivaPrev.next()){
+                        if(codigoSala == salaActivaPrev.getInt("sal_id")){
+                            out.print("OK");
+                        }
+                        else{
+                            out.print("Ya existe sala activa con el id "+ salaActivaPrev.getInt("sal_id"));
+                        }
+                    }
+                    else{
+                        ResultSet salaActiva = BdSala.consultarPorIdyEstado(codigoSala, "activa");                    
+                        if(salaActiva.next()){
+                            salaGen.setIdSala(salaActiva.getInt("sal_id"));
+                            if(BdSala.insertarRelacionUsuario(salaGen, usuario.getIdUsuario()) != 0){
+                                out.print("OK");
+                            }
+                            else{
+                                out.print("Error al crear relacion usuario sala "+BdSala.getMensaje());
+                            }
+                        }
+                        else{
+                            out.print("Error la sala no existe o no esta activa " );
+                        }
+                    }
+                    
+                } catch (SQLException ex) {
+                    out.print("Error al consultar salas "+BdSala.getMensaje() );
+                }
+            }
+            else if(request.getParameter("accion") != null && request.getParameter("accion").equals("salaEspera")){
+                try {
+                    ResultSet salaActiva = BdSala.consultaPorEstadoPorUsuario("activa",usuario.getIdUsuario());
+                    
+                    if(salaActiva.next()){
+                        
+                        ResultSet temas = BdTemas.consultarPorSala(salaActiva.getInt("sal_id"));
+                        ResultSet usuarios = BdUsuario.consultarPorSala(salaActiva.getInt("sal_id"), salaActiva.getInt("fk_usuario_owner"));
+                        
+                        
+                        
+                        RequestDispatcher view = request.getRequestDispatcher("salaDeEspera.jsp");
+                        request.setAttribute("idSalaNueva", salaActiva.getInt("sal_id"));
+                        request.setAttribute("idUsuarioOwner", salaActiva.getInt("fk_usuario_owner"));
+                        request.setAttribute("miIdUsuario", usuario.getIdUsuario());
+                        request.setAttribute("temas", temas);       
+                        request.setAttribute("usuarios", usuarios);       
+                        view.forward(request, response);
+                    }
+                    
+                    
+                    
+                    
+                } catch (SQLException ex) {
+                    out.print("Error al consultar salas "+BdSala.getMensaje() );
+                }
+            }
+            else if(request.getParameter("accion") != null && request.getParameter("accion").equals("completarSala")){
                 String[] temasSeleccionados = request.getParameterValues("temas");
                 if(temasSeleccionados.length<=2){
                     out.print("Error selecciona al menos 3 temas");
@@ -93,7 +178,7 @@ public class Salas extends HttpServlet {
                 ResultSet salaActiva = BdSala.consultaPorEstadoPorUsuario("activa",usuario.getIdUsuario());
                 try {
                     if(salaActiva.next()){
-                        out.print("Existe una sala activa debe mostrar la sala");
+                        //Existe una sala activa debe mostrar la sala
                         response.sendRedirect("Salas?accion=salaEspera");
                     }
                     else{

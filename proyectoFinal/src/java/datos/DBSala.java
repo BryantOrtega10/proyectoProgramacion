@@ -79,7 +79,24 @@ private DBConexion cn;
         }
         return true;
     }
+    public Integer insertarRelacionUsuario(Sala sala, int idUsuario){
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("INSERT INTO `sala_usuario`(`fk_usuario`, `fk_sala`) VALUES (?, ?);", Statement.RETURN_GENERATED_KEYS);
+            pstm.setInt(1, idUsuario);
+            pstm.setInt(2, sala.getIdSala());            
+            pstm.executeUpdate();
+            ResultSet rs = pstm.getGeneratedKeys();
+            if(rs.next())
+            {
+                return rs.getInt(1);
+            }
 
+        } catch (SQLException e) {
+            System.out.println(e);
+            cn.setMensaje(e.getMessage());
+        }
+        return 0;
+    }   
     public ResultSet consultarPorId(int id) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
@@ -93,12 +110,27 @@ private DBConexion cn;
         }
         return null;
     }
+    public ResultSet consultarPorIdyEstado(int id, String estado) {
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
+                    + " FROM sala WHERE sal_id = ? and sal_estado = ?");
+            pstm.setInt(1, id);
+            pstm.setString(2, estado);
+            ResultSet res = pstm.executeQuery();
+            return res;
+        } catch (SQLException e) {
+            System.out.println(e);
+            cn.setMensaje(e.getMessage());
+        }
+        return null;
+    }
     public ResultSet consultaPorEstadoPorUsuario(String estado,int idUsuario) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT * "
-                    + " FROM sala WHERE fk_usuario_owner = ? and sal_estado = ?");
+                    + " FROM sala WHERE (fk_usuario_owner = ? OR sal_id in(SELECT fk_sala from sala_usuario where fk_usuario = ?)) and sal_estado = ?");
             pstm.setInt(1, idUsuario);
-            pstm.setString(2, estado);
+            pstm.setInt(2, idUsuario);
+            pstm.setString(3, estado);
             
             ResultSet res = pstm.executeQuery();
             return res;
