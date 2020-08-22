@@ -31,7 +31,7 @@ import logica.Tema;
 
 /**
  * La clase Preguntas se encarga de manejar las peticiones de
- * creacióm, edición y eliminación de preguntas
+ * creación, edición y eliminación de preguntas
  */
 @WebServlet(name = "Preguntas", urlPatterns = {"/Preguntas"})
 public class Preguntas extends HttpServlet {

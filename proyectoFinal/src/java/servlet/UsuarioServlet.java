@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Clase Usuario
+ *
+ * Version 1
+ *
+ * 19 de Agosto de 2020
+ *
+ * Bryant Ortega
+*/
 package servlet;
 
 import datos.DBUsuario;
@@ -18,8 +22,8 @@ import javax.servlet.http.HttpSession;
 import logica.Usuario;
 
 /**
- *
- * @author bryda
+ * La clase UsuarioServlet se encarga de manejar las peticiones de
+ * inicio de sesion y de creacion de usuario.
  */
 public class UsuarioServlet extends HttpServlet {
 
@@ -44,19 +48,22 @@ public class UsuarioServlet extends HttpServlet {
         if(request.getParameter("accion") != null && request.getParameter("accion").equals("registrarCliente")){     
             String pass = request.getParameter("pass");
             String rPass = request.getParameter("rpass");
-            if(!pass.equals(rPass)){
+            if(!pass.equals(rPass)){                                            /* Confirma que las contraseñas ingresadas sean iguales */ 
                 out.print("Error las contraseñas no coinciden");
                 return;
             }
-          
+            
             usuGen.setLogin(request.getParameter("usuario"));
             usuGen.setEmail(request.getParameter("email"));
             usuGen.setPass(pass);
             usuGen.setRol("cliente");
             try {
+                
+                /*Se consulta en base de datos con los datos ingresados */
                 ResultSet res = BdUsuario.consultarPorLoginOEmail(usuGen.getLogin(), usuGen.getEmail());
                 if(!res.isBeforeFirst()){
                     
+                    /* El usuario no existe en base de datos, por ende se añade*/
                     int idUsuario = BdUsuario.insertar(usuGen);
                     usuGen.setIdUsuario(idUsuario);
                     if(idUsuario != 0){
@@ -79,6 +86,8 @@ public class UsuarioServlet extends HttpServlet {
         if(request.getParameter("accion") != null && request.getParameter("accion").equals("iniciarSesion")){     
             
             try {
+                
+                /* Se confirman las credenciales y se inica la sesion*/
                 ResultSet res = BdUsuario.consultarPorLoginyPass(request.getParameter("usuario"), request.getParameter("pass"));
                 if(res.next()){
                     usuGen.setIdUsuario(res.getInt("usu_id"));
